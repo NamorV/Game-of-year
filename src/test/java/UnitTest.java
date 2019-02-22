@@ -16,7 +16,20 @@ public class UnitTest {
 
         unit2 = unit1.attack(unit2);
         afterAttack = unit2.getHealth();
-        System.out.println(beforeAttack + "  " + afterAttack);
+
+        assertThat(beforeAttack).isGreaterThan(afterAttack);
+    }
+
+    @Test
+    public void whenAttackActionEnemyHealthReduce() {
+        unit1 = new Unit("Horus");
+        unit2 = new Unit("Set");
+        final int beforeAttack = unit2.getHealth();
+        final int afterAttack;
+
+        unit2 = unit1.makeAction(1, unit2);
+        afterAttack = unit2.getHealth();
+
         assertThat(beforeAttack).isGreaterThan(afterAttack);
     }
 }

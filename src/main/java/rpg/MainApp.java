@@ -22,8 +22,11 @@ public class MainApp {
                 System.exit(0);
             }
 
-            while(player.isAlive() && enemy.isAlive()) {
-                enemy = player.attack(enemy);
+            System.out.println("Make action!");
+            int actionNumber = Integer.parseInt(scanner.nextLine());
+
+            if(player.isAlive() && enemy.isAlive()) {
+                enemy = player.makeAction(actionNumber, enemy);
                 player = enemy.attack(player);
             }
         }

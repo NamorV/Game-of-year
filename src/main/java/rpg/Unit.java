@@ -35,12 +35,15 @@ public class Unit {
     }
 
     public Unit attack(Unit enemy) {
-        Random random = new Random();
-        int attackValue = random.nextInt(6) + 1;
-        int currentHealth = enemy.getHealth() - attackValue;
+        if(isAlive()) {
+            Random random = new Random();
+            int attackValue = random.nextInt(6) + 1;
+            int currentHealth = enemy.getHealth() - attackValue;
 
-        System.out.println(name + " deal " + attackValue + " to " + enemy.getName());
-        enemy.setHealth(currentHealth);
+            System.out.println(name + " deal " + attackValue + " to " + enemy.getName());
+            enemy.setHealth(currentHealth);
+        }
+
         return enemy;
     }
 
@@ -51,5 +54,21 @@ public class Unit {
         }
 
         return true;
+    }
+
+    public void status() {
+        System.out.println("Name: " + name + "   Health: " + health);
+    }
+
+    public Unit makeAction(int actionNumber, Unit enemy) {
+        switch (actionNumber) {
+            case 1:
+                enemy = attack(enemy);
+                break;
+            default:
+                System.out.println("Wrong action!");
+        }
+
+        return enemy;
     }
 }
