@@ -39,7 +39,17 @@ public class Unit {
         int attackValue = random.nextInt(6) + 1;
         int currentHealth = enemy.getHealth() - attackValue;
 
+        System.out.println(name + " deal " + attackValue + " to " + enemy.getName());
         enemy.setHealth(currentHealth);
         return enemy;
+    }
+
+    public boolean isAlive() {
+        if(health < 1) {
+            System.out.println(name + " is dead!");
+            return false;
+        }
+
+        return true;
     }
 }
