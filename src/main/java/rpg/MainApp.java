@@ -15,6 +15,7 @@ public class MainApp {
         Unit enemy = new Unit("Scorpion");
 
         System.out.println("You are attacked by " + enemy.getName());
+
         while(true) {
             String line = scanner.nextLine();
 
@@ -22,13 +23,27 @@ public class MainApp {
                 System.exit(0);
             }
 
-            System.out.println("Make action!");
-            int actionNumber = Integer.parseInt(scanner.nextLine());
+            combat(player, enemy);
+        }
+    }
 
-            if(player.isAlive() && enemy.isAlive()) {
-                enemy = player.makeAction(actionNumber, enemy);
-                player = enemy.attack(player);
-            }
+    public static void combat(Unit player, Unit enemy) {
+        Scanner scanner = new Scanner(System.in);
+        player.listOfActions();
+
+        int actionNumber = Integer.parseInt(scanner.nextLine());
+
+        if(player.isAlive() && enemy.isAlive()) {
+            enemy = player.makeAction(actionNumber, enemy);
+            player = enemy.attack(player);
+        }
+
+        if(!player.isAlive()) {
+            System.out.println(enemy.getName() + " is victorious! You are dead!");
+        }
+
+        if(!enemy.isAlive()) {
+            System.out.println(player.getName() + " is victorious!");
         }
     }
 

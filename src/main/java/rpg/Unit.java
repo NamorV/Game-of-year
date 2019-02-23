@@ -49,7 +49,6 @@ public class Unit {
 
     public boolean isAlive() {
         if(health < 1) {
-            System.out.println(name + " is dead!");
             return false;
         }
 
@@ -70,5 +69,10 @@ public class Unit {
         }
 
         return enemy;
+    }
+
+    public void listOfActions() {
+        System.out.println("Actions: ");
+        System.out.println("1. Attack");
     }
 }
